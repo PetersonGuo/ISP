@@ -5,14 +5,26 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Platformer.Mechanics;
 
+
 public class EndScreen : MonoBehaviour
 {
     public TextMeshProUGUI mainText, scoreText;
+    public AudioSource win, lose;
 
     void Start()
     {
-        mainText.text = "You Win!";
-        scoreText.text = "Score: " + Score.GetScore() + " / " + Score.GetMaxScore();
+        mainText.text = Score.GetMainText();
+        if (mainText.text == "You Win!")
+        {
+            win.Play();
+            lose.Stop();
+        }
+        else
+        {
+            lose.Play();
+            win.Stop();
+        }
+        scoreText.text = "Pages Collected: " + Score.GetScore() + " / " + Score.GetMaxScore();
     }
 
     public void MainMenu()

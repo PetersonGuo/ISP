@@ -31,6 +31,7 @@ namespace Platformer.Gameplay
                 player.animator.SetTrigger("hurt");
                 player.animator.SetBool("dead", true);
                 SceneManager.LoadScene("End");
+                Score.SetMainText("You Lose!");
             }
         }
     }

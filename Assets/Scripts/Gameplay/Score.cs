@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    private static int maxScore, score;
+    private static int maxScore = 100, score;
+    private static string mainText;
     // Start is called before the first frame update
     void Start()
     {
-        maxScore = GameObject.FindGameObjectsWithTag("Token").Length;
+        mainText = "You Win!";
     }
 
     public static void Increment()
@@ -24,5 +25,15 @@ public class Score : MonoBehaviour
     public static int GetMaxScore()
     {
         return maxScore;
+    }
+
+    public static void SetMainText(string text)
+    {
+        mainText = text;
+    }
+
+    public static string GetMainText()
+    {
+        return mainText;
     }
 }
