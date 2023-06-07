@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 namespace Platformer.Mechanics
 {
     /// <summary>
-    /// Represebts the current vital statistics of some game entity.
+    /// Represents the current vital statistics of some game entity.
     /// </summary>
     public class Health : MonoBehaviour
     {
@@ -22,6 +22,11 @@ namespace Platformer.Mechanics
         public bool IsAlive => currentHP > 0;
 
         int currentHP;
+
+        public void Restart()
+        {
+            SceneManager.LoadScene("Game");
+        }
 
         /// <summary>
         /// Increment the HP of the entity.
@@ -51,7 +56,7 @@ namespace Platformer.Mechanics
         public void Die()
         {
             while (currentHP > 0) Decrement();
-            SceneManager.LoadScene("EndScreen");
+            Schedule<HealthIsZero>();
         }
 
         void Awake()

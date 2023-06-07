@@ -19,6 +19,7 @@ namespace Platformer.Mechanics
         float nextFrameTime = 0;
 
         [ContextMenu("Find All Tokens")]
+
         void FindAllTokensInScene()
         {
             tokens = UnityEngine.Object.FindObjectsOfType<TokenInstance>();
@@ -50,22 +51,14 @@ namespace Platformer.Mechanics
                     //if token is null, it has been disabled and is no longer animated.
                     if (token != null)
                     {
-                        token._renderer.sprite = token.sprites[token.frame];
-                        if (token.collected && token.frame == token.sprites.Length - 1)
+                        if (token.collected)
                         {
                             token.gameObject.SetActive(false);
                             tokens[i] = null;
                         }
-                        else
-                        {
-                            token.frame = (token.frame + 1) % token.sprites.Length;
-                        }
                     }
                 }
-                //calculate the time of the next frame.
-                nextFrameTime += 1f / frameRate;
             }
         }
-
     }
 }
